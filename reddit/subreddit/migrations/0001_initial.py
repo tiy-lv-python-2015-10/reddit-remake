@@ -40,12 +40,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='subreddit_rel',
-            field=models.ForeignKey(to='reddit_app.Subreddit'),
+            field=models.ForeignKey(to='subreddit.Subreddit'),
         ),
         migrations.AddField(
             model_name='comment',
             name='post_rel',
-            field=models.ForeignKey(to='reddit_app.Post'),
+            field=models.ForeignKey(to='subreddit.Post'),
         ),
         migrations.AddField(
             model_name='comment',

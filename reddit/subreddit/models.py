@@ -4,9 +4,8 @@ from django.db import models
 from django.utils import timezone
 
 class Subreddit(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    description = models.TextField
+    description = models.CharField(max_length= 255, default='empty')
     creation_date_time = models.DateField(auto_now_add=True)
 
 
@@ -22,9 +21,8 @@ class Subreddit(models.Model):
 
 
 class Post(models.Model):
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length= 255)
-    description = models.TextField
+    description = models.CharField(max_length= 255, default='empty')
     #url: which can be null and should use the built in urlfield type
     #slug: This is a url friendly version of the title. SlugField
     creation_time = models.DateTimeField(auto_now_add=True)
@@ -42,17 +40,15 @@ class Post(models.Model):
     #         return False
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Comment(models.Model):
-    id = models.AutoField(primary_key=True)
-    comment_text = models.TextField
+    comment_text = models.CharField(max_length= 255, default='empty')
     user_rel = models.ForeignKey(User)
     post_rel = models.ForeignKey(Post)
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.name
+
 
