@@ -10,15 +10,15 @@ class Subreddit(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def current_count(self):
-        return Subreddit.objects.all().count()
+        return self.post_set.all().count()
 
     def today_count(self):
         one_day = timezone.now() - datetime.timedelta(days=1)
-        return Subreddit.objects.filter(created__gte=one_day).count()
+        return self.post_set.filter(creation_time__gte=one_day).count()
 
     def daily_average(self):
         one_week = timezone.now() - datetime.timedelta(days=7)
-        weekly_post = Subreddit.objects.filter(created__gte=one_week).count()
+        weekly_post = self.post_set.filter(creation_time__gte=one_week).count()
         weekly_post = weekly_post / 7
         weekly_post = round(weekly_post, 1)
         return weekly_post
@@ -48,6 +48,9 @@ class Post(models.Model):
             return True
         else:
             return False
+
+    # def post_upvote(self):
+
 
     def __str__(self):
         return "{} {}".format(self.name, self.creation_time)

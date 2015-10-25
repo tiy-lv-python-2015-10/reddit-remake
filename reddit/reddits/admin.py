@@ -4,7 +4,7 @@ from .models import Subreddit, Post, Comment
 
 @admin.register(Subreddit)
 class SubredditAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "created")
+    list_display = ("name", "description", "created", "current_count", "today_count", "daily_average")
 
 
 @admin.register(Post)

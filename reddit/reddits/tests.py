@@ -7,17 +7,23 @@ class SubredditTestCase(TestCase):
 
     def setUp(self):
         Subreddit.objects.create(name="Help", description="I'm lost")
-        Subreddit.objects.create(name="NOOO", description="I'm lost")
-        Subreddit.objects.create(name="asda", description="lkoads")
+        Post.objects.create(name="test post", description="test description", subreddit=Subreddit.objects.get(pk=1),
+                            user_id=1)
+        Post.objects.create(name="test post aswell", description="test description aswell",
+                            subreddit=Subreddit.objects.get(pk=1), user_id=1)
+
 
     def test_current_count(self):
-        self.assertEqual(Subreddit.current_count(self), 3)
+        sr = Subreddit.objects.get(pk=1)
+        self.assertEqual(sr.current_count(), 2)
 
     def test_today_count(self):
-        self.assertEqual(Subreddit.today_count(self), 3)
+        sr = Subreddit.objects.get(pk=1)
+        self.assertEqual(sr.today_count(), 2)
 
     def test_daily_average(self):
-        self.assertEqual(Subreddit.daily_average(self), .4)
+        sr = Subreddit.objects.get(pk=1)
+        self.assertEqual(sr.daily_average(), .3)
 
 
 class PostTestCase(TestCase):
