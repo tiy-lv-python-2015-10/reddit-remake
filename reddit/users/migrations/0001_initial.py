@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Profile',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
                 ('age', models.IntegerField()),
                 ('gender', models.CharField(max_length=8)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
