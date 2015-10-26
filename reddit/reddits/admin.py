@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subreddit, Post, Comment
+from reddits.models import Subreddit, Post, Comment, VotingSystem, Trophy
 
 
 @admin.register(Subreddit)
@@ -9,10 +9,19 @@ class SubredditAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "url", "slug", "creation_time", "subreddit", "user")
+    list_display = ("name", "description", "url", "slug", "karma", "creation_time", "subreddit", "user", "is_recent")
     prepopulated_fields = {"slug": ("name",)}
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("comment_text", "user", "post", "created_time")
+    list_display = ("comment_text", "user", "post", "karma", "created_time")
+
+
+@admin.register(VotingSystem)
+class VotingSystemAdmin(admin.ModelAdmin):
+    list_display = ("user", "post", "comment", "vote")
+
+@admin.register(Trophy)
+class TrophyAdmin(admin.ModelAdmin):
+    list_display = ("name",)

@@ -12,7 +12,6 @@ class SubredditTestCase(TestCase):
         Post.objects.create(name="test post aswell", description="test description aswell",
                             subreddit=Subreddit.objects.get(pk=1), user_id=1)
 
-
     def test_current_count(self):
         sr = Subreddit.objects.get(pk=1)
         self.assertEqual(sr.current_count(), 2)
@@ -23,7 +22,7 @@ class SubredditTestCase(TestCase):
 
     def test_daily_average(self):
         sr = Subreddit.objects.get(pk=1)
-        self.assertEqual(sr.daily_average(), .3)
+        self.assertEqual(sr.daily_average, .3)
 
 
 class PostTestCase(TestCase):
