@@ -1,2 +1,4 @@
 Django==1.8.5
-django_extensions
+django-extensions==1.5.7
+six==1.10.0
+wheel==0.24.0
